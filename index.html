@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dice Royale</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+  
+  
+  <!-- Setup Screen -->
+  <div id="setupScreen">
+    <h1>🎲 Dice Royale 🎲</h1>
+<!--we have used form rather than div to avoid writting click/change again & again in js-->
+    <form id="setupForm">
+
+      <label for="gameMode">🎮 Game Mode:</label> <!--used label instead of para to get better accessibility in js-->
+      <select id="gameMode">
+
+        <option value="classic">Classic Mode</option>
+        <option value="knockout">Knockout Mode</option>
+        <option value="team">Team Mode</option>
+      </select>
+
+      <br><br>
+      <!-- <div id="playerInputs"></div>  -->
+
+      <label for="playerCount">👥 Number of Players:</label>
+      <select id="playerCount">
+        <option value="2">2 Players</option>
+        <option value="3">3 Players</option>
+        <option value="4">4 Players</option>
+      </select>
+
+      <br><br>
+
+      <div id="playerInputs"></div>
+
+      <br>
+      <button type="submit">🚀 Start Game</button>
+    </form>
+  </div>
+
+
+
+<!-- -------------------------------Inagme layout----------------------------------------------------- -->
+<div id="gameScreen" style="display: none;">
+  <h2 id="turnIndicator">🎲 Player 1's Turn</h2>
+<!-- players info area -->
+  <div id="playerArea">
+    <div class="playerBox" id="player1Box">
+      <h3>Player 1</h3>
+      <p>Score: <span class="score">0</span></p>
+    </div>
+    <div class="playerBox" id="player2Box">
+      <h3>Player 2</h3>
+      <p>Score: <span class="score">0</span></p>
+    </div>
+  </div>
+
+
+  <!-- -------------live Score Board area------------------------------------- -->
+  <div id="scoreboard">
+    <h2>🏆 Live Scoreboard</h2>
+    <ul id="scoreList"></ul>
+    <!-- -----------TeamMode Score Card----------- -->
+  <div id="teamScores" style="margin-top: 15px;">
+    <h3 style="text-align:center;">Team Scores</h3>
+    <p>Team A: <span id="teamAScoreDisplay">0</span></p>
+    <p>Team B: <span id="teamBScoreDisplay">0</span></p>
+  </div>
+  </div>
+
+
+  <!-- dice area -->
+  <div id="diceArea">
+    <img id="diceImage" src="./Dice images/dice6.png" alt="Dice">
+    <button id="rollBtn">🎲 Roll The Dice</button>
+
+
+    <!-- to reset the game after 1 round -->
+     <button id="restartBtn" style="display: none;">🔄 Play Again</button>  
+  </div>
+</div>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <!-- ------------------------------sound effects ------------------------- -->
+<!-- Background Music -->
+<audio id="introMusic" autoplay loop>
+  <source src="sound/intro.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Mute Button -->
+<button id="muteBtn" class="btn btn-sm btn-warning">🔇 Mute Music</button>
+
+<!-- ----------------dice rolling sound---------------------- -->
+<audio id="rollSound">
+  <source src="sound/diceRolling.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+
+
+
+
+<!-------------------------------------------------------bootstrap for instruction bar--------------------------------------------- -->
+<button type="button" class="btn btn-info position-fixed top-0 start-0 m-3 z-3" data-bs-toggle="modal" data-bs-target="#instructionModal">
+  📖 Instructions
+</button>
+
+
+<div class="modal fade" id="instructionModal" tabindex="-1" aria-labelledby="instructionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="instructionModalLabel">🎮 How to Play Dice Royale</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Choose number of players and mode.</li>
+          <li class="list-group-item">Players take turns rolling dice.</li>
+          <li class="list-group-item">In Team Mode Parity System is followed to team up.</li>
+          <li class="list-group-item"><strong>Classic:</strong> First to reach target score of 30 wins.</li>
+          <li class="list-group-item"><strong>Knockout:</strong> If you roll 1 on the dice you are eliminated.</li>
+          <li class="list-group-item"><strong>Team:</strong> Team to reach the score of 30 first wins.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
